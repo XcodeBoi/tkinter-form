@@ -2,12 +2,12 @@
 
 # The frame used for each field of a form
 
-from namedWidget import NamedWidget
+from .namedWidget import NamedWidget
 import tkinter as tk # for typing
 from typing import Any
 from ..errors import InvalidUiDict
-from raw.generic import *
-from raw.multi import *
+from .raw.generic import *
+from .raw.multi import *
 
 # the default named entry field, takes a parent widget
 class NamedInteractionField(NamedWidget):
@@ -42,5 +42,5 @@ class NamedInteractionField(NamedWidget):
     
     # minor abstraction of setWidget to pass kwargs defined in the configuration dictionary
     def configWidget(self, widget: Any, *args: Any, **kwargs: Any):
-        self.setWidget(widget, **self.config.get("flags", {}), *args, **kwargs)
+        self.setWidget(widget, *args, **self.config.get("flags", {}), **kwargs)
 

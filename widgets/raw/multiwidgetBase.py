@@ -2,7 +2,7 @@
 
 # defines the mutli widget container implementation
 
-from generic import Widget
+from .generic import Widget
 import tkinter as tk
 from typing import Literal, List, Any
 

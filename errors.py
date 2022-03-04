@@ -8,3 +8,7 @@
 class InvalidUiDict(Exception):
     pass
 
+# exported with __init__.py to be used by other programs. 
+# Though only used in the context of form set command
+class UiError(Exception):
+    pass

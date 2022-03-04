@@ -2,10 +2,10 @@
 
 # Every raw widget that extends the MultiWidget base
 
-from __generic import RadioButton
-from generic import DropDown
+from .__generic import RadioButton
+from .generic import DropDown
 import tkinter as tk # covers type hinting in this file only
-from multiwidgetBase import MultiWidget 
+from .multiwidgetBase import MultiWidget 
 from typing import List, Literal, Any
 
 

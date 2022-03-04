@@ -50,7 +50,14 @@ class EntryField(Widget, tk.Entry):
 
 # default drop down
 # uses ttk for inbuilt scrolling capability
-class DropDown(Widget, ttk.Combobox):
+
+# this superclass exists to remove incompatible style arguments
+class customComboBox(ttk.Combobox):
+    def __init__(self, *args, **kwargs):
+        kwargs.pop("bg")
+        super().__init__(*args, **kwargs)
+
+class DropDown(Widget, customComboBox):
     def __init__(self, parent: tk.Frame, items: List[str], width: int = 5, **optionMenuOptions: Any):
         if len(items) == 0:
             raise ValueError("No content in dropdown")

@@ -4,7 +4,7 @@
 
 from typing import Union, Any, Literal
 import tkinter as tk
-from raw.generic import *
+from .raw.generic import *
 
 
 # the barebones version of named widget
@@ -81,4 +81,8 @@ class NamedWidget(BareBonesNamedWidget):
         })
         
         self.setText(text)
+    
+    # retrieves value from widget field
+    def get(self) -> str:
+        return self.widget.get()
 

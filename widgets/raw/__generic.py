@@ -4,7 +4,7 @@
 
 from typing import Any
 import tkinter as tk
-from generic import Widget
+from .generic import Widget
 
 
 # default SINGULAR radio button

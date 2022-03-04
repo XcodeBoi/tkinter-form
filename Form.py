@@ -4,9 +4,10 @@
 
 from typing import Union, Any, Dict, Callable
 import tkinter as tk
-from widgets.interactionFeild import NamedInteractionField
-from widgets.raw.generic import Widget
-from widgets.messageButton import MessageButton
+from .widgets.interactionFeild import NamedInteractionField
+from .widgets.raw.generic import Widget
+from .widgets.messageButton import MessageButton
+from . import errors
 
 
 # self placing NamedInteractionField
@@ -33,7 +34,7 @@ class FormFrame(Widget, tk.Frame):
         
     # returns an object of data from the form
     def data(self) -> Dict[str, str]:
-        return { name:data.get() for (name, data) in self.fields.items() } # type: ignore
+        return { name:data.get() for (name, data) in self.fields.items() }
     
     # set the command to occur on button press
     def setCommand(self, func: Callable[[Dict[str, str]], str]):
@@ -42,10 +43,13 @@ class FormFrame(Widget, tk.Frame):
             self.button.showMessage("")
             try:
                 result = func(self.data())
+                usrFeedBack = result if result else "Success!"
                 # user feedback success
-                self.after(200, lambda: self.button.showMessage(result))
-            except Exception as error:
+                self.after(200, lambda: self.button.showMessage(usrFeedBack))
+            except errors.UiError as error:
+                result: str = str(error)
+                usrFeedBack = result if result else "Failure."
                 # user feedback fail
-                self.after(200, lambda: self.button.showMessage(str(error)))
+                self.after(200, lambda: self.button.showMessage(usrFeedBack))
         self.button.setCommand(buttonCommand)
 

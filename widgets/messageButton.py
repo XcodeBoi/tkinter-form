@@ -2,7 +2,7 @@
 
 # the button used at the bottom of the form
 
-from namedWidget import BareBonesNamedWidget
+from .namedWidget import BareBonesNamedWidget
 import tkinter as tk
 from typing import Callable
 
