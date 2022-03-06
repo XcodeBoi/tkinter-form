@@ -59,7 +59,7 @@ class BareBonesNamedWidget(Widget, tk.Frame):
     # the constructor.
     def setWidget(self, widget: Any, *args: Any, **kwargs: Any):
         self.widget = widget(self, *args, **kwargs)
-        self.__placeWidget(**self.getStyle("widget")) # type: ignore
+        self.__placeWidget(**self.getStyle("widget"))
 
     # place the assoicated widget
     def __placeWidget(self, **gridargs: Any):

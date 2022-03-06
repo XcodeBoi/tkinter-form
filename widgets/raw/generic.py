@@ -53,7 +53,7 @@ class EntryField(Widget, tk.Entry):
 
 # this superclass exists to remove incompatible style arguments
 class customComboBox(ttk.Combobox):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any):
         kwargs.pop("bg")
         super().__init__(*args, **kwargs)
 
