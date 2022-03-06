@@ -29,6 +29,8 @@ class NamedInteractionField(NamedWidget):
                     self.configWidget(RadioButtons, widgetInformation["content"], direction = widgetInformation["direction"])
                 case "multidrop":
                     self.configWidget(MultiDrop, widgetInformation["content"], direction = widgetInformation["direction"])
+                case "custom":
+                    self.setWidget(widgetInformation["component"], widgetInformation["data"])
                 case _:
                     raise InvalidUiDict
         except InvalidUiDict:
