@@ -37,19 +37,19 @@ class FormFrame(Widget, tk.Frame):
         return { name:data.get() for (name, data) in self.fields.items() }
     
     # set the command to occur on button press
-    def setCommand(self, func: Callable[[Dict[str, str]], str]):
+    def setCommand(self, func: Callable[[Dict[str, str]], Union[str, None]]):
         # the decorator passes self.data to the anonymous function passed into the parent method
         def buttonCommand():
             self.button.showMessage("")
             try:
-                result = func(self.data())
-                usrFeedBack = result if result else "Success!"
+                result: Union[str, None] = func(self.data())
+                usrFeedBack: str = result if result else "Success!"
                 # user feedback success
                 self.after(200, lambda: self.button.showMessage(usrFeedBack))
             except errors.UiError as error:
-                result: str = str(error)
-                usrFeedBack = result if result else "Failure."
+                errorText: str = str(error)
+                usrErrorText: str = errorText if errorText else "Failure."
                 # user feedback fail
-                self.after(200, lambda: self.button.showMessage(usrFeedBack))
+                self.after(200, lambda: self.button.showMessage(usrErrorText))
         self.button.setCommand(buttonCommand)
 
