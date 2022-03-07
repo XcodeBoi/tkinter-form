@@ -28,10 +28,10 @@ class MultiWidget(Widget, tk.Frame):
         match self.direction:
             case "vertical":
                 # append to row
-                widget.grid(column = 0, row = self.grid_size()[1], sticky = "w", pady = 2) # type: ignore
+                widget.grid(column = 0, row = self.grid_size()[1], sticky = "e", pady = 2)
             case "horizontal":
                 # append to column
-                widget.grid(column = self.grid_size()[0], row = 0, padx = 2) # type: ignore
+                widget.grid(column = self.grid_size()[0], row = 0, padx = 2)
             case _:
                 raise ValueError("Invalid direction")
 
