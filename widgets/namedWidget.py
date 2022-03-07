@@ -40,7 +40,7 @@ class BareBonesNamedWidget(Widget, tk.Frame):
     # set text next to widget
     def setText(self, text: str):
         self.textField.configure(text = text)
-        self.__placeText(**self.getStyle("text")) # type: ignore
+        self.__placeText(**self.getStyle("text"))
 
     # place text widget
     # private as we don't want to ever replace the text manually
