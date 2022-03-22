@@ -35,17 +35,30 @@ class FormFrame(Widget, tk.Frame):
     # returns an object of data from the form
     def data(self) -> Dict[str, str]:
         return { name:data.get() for (name, data) in self.fields.items() }
+
+    # empties all feilds of their current values
+    def clearFields(self) -> None:
+        for widget in self.fields.values():
+            widget.clearValue()
     
     # set the command to occur on button press
     def setCommand(self, func: Callable[[Dict[str, str]], Union[str, None]]):
         # the decorator passes self.data to the anonymous function passed into the parent method
         def buttonCommand():
+            # clear the user message field
             self.button.showMessage("")
+            
+            # clear the fields when success occurs
+            # and allow a user to show a custom return message
+            def uiSuccess(result: Union[str, None] = None) -> str:
+                self.clearFields()
+                return result if result else "Success!"
+
             try:
                 result: Union[str, None] = func(self.data())
-                usrFeedBack: str = result if result else "Success!"
                 # user feedback success
-                self.after(200, lambda: self.button.showMessage(usrFeedBack))
+                self.after(200, lambda: self.button.showMessage(uiSuccess(result)))
+                
             except errors.UiError as error:
                 errorText: str = str(error)
                 usrErrorText: str = errorText if errorText else "Failure."

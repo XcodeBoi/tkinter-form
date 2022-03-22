@@ -41,12 +41,16 @@ class Widget:
 # default text field, takes a parent widget
 class TextField(Widget, tk.Label):
     def __init__(self, parent: tk.Frame, **labelOptions: Any):
-        super().__init__(parent, **self.style(), **labelOptions)
+        super().__init__(parent, font = ("Comic Sans MS", 15), **self.style(), **labelOptions)
 
 # default entry field, takes a parent widget
 class EntryField(Widget, tk.Entry):
     def __init__(self, parent: tk.Frame, **entryOptions: Any):
         super().__init__(parent, **self.style(), **entryOptions)
+    
+    # clear the value from the widget
+    def resetValue(self) -> None:
+        self.delete(0, "end") 
 
 # default drop down
 # uses ttk for inbuilt scrolling capability

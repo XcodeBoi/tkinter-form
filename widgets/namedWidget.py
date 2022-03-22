@@ -86,3 +86,13 @@ class NamedWidget(BareBonesNamedWidget):
     def get(self) -> str:
         return self.widget.get()
 
+    # clears the value from the widget
+    def clearValue(self) -> None:
+        # we ask for forgiveness rather than permission here
+        # as the user may want to set a widget that does not have the avaliable method
+        # and we can't enforce that they will
+        try:
+            self.widget.resetValue()
+        except:
+            pass
+
